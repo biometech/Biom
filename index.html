@@ -133,7 +133,6 @@
     transition: background 0.2s;
   }
   .btn-primary:hover { background: var(--green-dark); }
-  button.btn-primary, button.btn-secondary, button.btn-white, button.btn-ghost { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
   .btn-secondary {
     display: inline-block;
     color: var(--ink);
@@ -528,8 +527,39 @@
     line-height: 1.7;
   }
 
-  /* FAQ */
-  #faq { background: var(--cream); }
+  /* CAUSE CARDS */
+  .cause-card {
+    background: var(--white);
+    border: 0.5px solid var(--rule);
+    border-radius: 14px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .cause-card:hover {
+    border-color: var(--green);
+    transform: translateY(-2px);
+  }
+  .cause-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 0.9rem;
+    border-radius: 12px;
+    background: var(--green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green-dark);
+  }
+  .cause-icon svg { width: 22px; height: 22px; }
+  .cause-card h4 {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+
+  /* FAQ */ { background: var(--cream); }
   .faq-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -656,8 +686,9 @@
 
     .doctors-grid { grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2.5rem; }
 
-    .compare-grid { grid-template-columns: 1fr; }
-    .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
+    #science .section-inner > div { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    #problem > .section-inner > div[style*="repeat(5"] { grid-template-columns: 1fr 1fr 1fr !important; }
+    
 
     footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; padding: 2rem 1.25rem; }
     .footer-links { flex-wrap: wrap; gap: 1rem 1.5rem; }
@@ -711,14 +742,43 @@
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">Биом<span>.</span></a>
+  <a href="#" class="nav-logo" style="display:flex;align-items:center;">
+    <svg height="38" viewBox="0 0 220 70" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+      <!-- Circuit icon -->
+      <g stroke="#0ABAB5" stroke-width="2" fill="none" stroke-linecap="round">
+        <!-- horizontal spine -->
+        <line x1="6" y1="35" x2="38" y2="35"/>
+        <!-- top branch -->
+        <line x1="14" y1="35" x2="14" y2="18"/>
+        <line x1="14" y1="18" x2="24" y2="18"/>
+        <!-- bottom branch -->
+        <line x1="24" y1="35" x2="24" y2="50"/>
+        <line x1="24" y1="50" x2="34" y2="50"/>
+        <!-- mid branch -->
+        <line x1="20" y1="35" x2="20" y2="26"/>
+        <line x1="20" y1="26" x2="30" y2="26"/>
+        <!-- nodes -->
+        <circle cx="14" cy="18" r="2.5" fill="#0ABAB5"/>
+        <circle cx="24" cy="50" r="2.5" fill="#0ABAB5"/>
+        <circle cx="30" cy="26" r="2.5" fill="#7ED8D6"/>
+        <circle cx="34" cy="50" r="2" fill="#7ED8D6"/>
+        <circle cx="38" cy="35" r="2" fill="#0ABAB5"/>
+        <circle cx="24" cy="18" r="2" fill="#7ED8D6"/>
+      </g>
+      <!-- БИОМ -->
+      <text x="44" y="46" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="32" letter-spacing="1" fill="#0ABAB5">БИОМ</text>
+      <!-- ТЕХНОЛОГИИ -->
+      <text x="44" y="62" font-family="Arial, sans-serif" font-weight="400" font-size="11.5" letter-spacing="3.5" fill="#088A86">ТЕХНОЛОГИИ</text>
+    </svg>
+  </a>
   <ul class="nav-links">
-    <li><a href="#how">Как это работает</a></li>
-    <li><a href="#about">О нас</a></li>
-    <li><a href="#services">Услуги</a></li>
+    <li><a href="#problem">Микробиота</a></li>
+    <li><a href="#science">Наш подход</a></li>
+    <li><a href="#solution">Как это работает</a></li>
+    <li><a href="#why">Почему мы</a></li>
     <li><a href="#faq">Вопросы</a></li>
   </ul>
-  <a href="#cta" class="nav-cta">Начать</a>
+  <button onclick="document.getElementById('booking-modal').style.display='flex'" class="nav-cta" style="cursor:pointer;font-family:inherit;border:none;">Записаться</button>
 </nav>
 
 <!-- HERO -->
@@ -726,10 +786,10 @@
   <div class="hero">
     <div class="hero-copy">
       <span class="hero-eyebrow">Биом Технологии</span>
-      <h1>Ваша флора лечит.<br><em>Без антибиотиков.</em><br>Навсегда.</h1>
-      <p class="hero-sub">Мы берём ваши лактобациллы, культивируем их и возвращаем вам — для лечения дисбиоза, восстановления после химиотерапии или долгосрочной защиты здоровья. Всё в нашей клинике.</p>
+      <h1>Вагинальная микробиота —<br><em>драгоценный ресурс<br>женского здоровья.</em></h1>
+      <p class="hero-sub">Мы сохраняем и восстанавливаем вашу собственную микробиоту, вместо того чтобы уничтожать её антибиотиками.</p>
       <div class="hero-buttons">
-        <button type="button" onclick="document.getElementById('booking-modal').style.cssText='display:block;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(5,94,91,0.5);z-index:9999;overflow-y:auto;'" class="btn-primary" style="cursor:pointer;font-family:inherit;border:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation;">Записаться на консультацию</button>
+        <button onclick="document.getElementById('booking-modal').style.display='flex'" class="btn-primary" style="cursor:pointer;font-family:inherit;border:none;">Записаться на консультацию</button>
       </div>
     </div>
     <div class="hero-visual">
@@ -805,12 +865,105 @@
 
 <hr class="divider">
 
-<!-- HOW IT WORKS -->
-<section id="how">
+<!-- ═══════════════ 1 · ЧТО ТАКОЕ МИКРОБИОТА ═══════════════ -->
+<section id="problem">
   <div class="section-inner">
-    <p class="section-eyebrow">Как это работает</p>
-    <h2 class="section-title">Четыре шага.<br>Один визит для начала.</h2>
+    <p class="section-eyebrow">Что такое микробиота</p>
+    <h2 class="section-title">Живая экосистема,<br><em>которая работает как щит.</em></h2>
+    <p class="section-lead">Вагинальная микробиота — это совокупность микроорганизмов, обитающих во влагалище. Когда эта живая экосистема сбалансирована, она защищает. Но стоит балансу нарушиться — это состояние называется дисбиоз — и женщина становится уязвима на многих уровнях.</p>
 
+    <!-- Причины дисбиоза -->
+    <p class="section-eyebrow" style="margin-top: 4.5rem;">Основные причины дисбиоза</p>
+    <h3 class="section-title" style="font-size: clamp(24px, 3vw, 32px); margin-bottom: 2.5rem;">Пять факторов, нарушающих баланс</h3>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem;">
+      <div class="cause-card">
+        <div class="cause-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="1.5"/><circle cx="19" cy="6" r="1.5"/><circle cx="19" cy="18" r="1.5"/><circle cx="5" cy="18" r="1.5"/></svg>
+        </div>
+        <h4>Инфекции</h4>
+      </div>
+      <div class="cause-card">
+        <div class="cause-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 3.5l10 10-4 4-10-10z"/><path d="M6.5 7.5l4 4"/><circle cx="5" cy="19" r="2"/></svg>
+        </div>
+        <h4>Инвазивная терапия</h4>
+      </div>
+      <div class="cause-card">
+        <div class="cause-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 8c0-2 2-3 3.5-3S12 6 12 8"/><path d="M19 8c0-2-2-3-3.5-3S12 6 12 8"/><circle cx="12" cy="15" r="3"/></svg>
+        </div>
+        <h4>Гормональные изменения</h4>
+      </div>
+      <div class="cause-card">
+        <div class="cause-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M6 8h12"/><path d="M8 16h8"/><path d="M12 4v16"/></svg>
+        </div>
+        <h4>Неправильное питание</h4>
+      </div>
+      <div class="cause-card">
+        <div class="cause-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 5 2 8h10c0-3 2-5 2-8a7 7 0 0 0-7-7z"/><path d="M9 22h6"/></svg>
+        </div>
+        <h4>Стресс</h4>
+      </div>
+    </div>
+
+    <!-- Порочный круг -->
+    <div class="compare-card alt" style="margin-top: 3.5rem;">
+      <div class="cmp-label">Традиционный подход</div>
+      <h3>Замкнутый круг</h3>
+      <p>Основной подход к лечению дисбиоза — найти патоген и уничтожить его антибиотиками. Но даже если это удаётся, собственная микробиота остаётся ослабленной, что часто приводит к рецидивам. Возникает замкнутый круг: <strong>лечение — улучшение — рецидив — назначение более мощных антибиотиков</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════════ 1.5 · ЧТО ПРЕДЛАГАЕМ МЫ ═══════════════ -->
+<section id="science" style="background: var(--green-deep);">
+  <div class="section-inner">
+    <p class="section-eyebrow" style="color: var(--green-mid);">Что предлагаем мы</p>
+    <h2 class="section-title" style="color: white;">Вместо борьбы с «плохими» —<br><em>усиливаем «хороших».</em></h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start;">
+
+      <div style="color: rgba(255,255,255,0.75); font-size: 16px; line-height: 1.75;">
+        <p style="margin-bottom: 1.25rem;">Мы не пытаемся стерилизовать вашу микробиоту. Мы восстанавливаем её собственный баланс.</p>
+        <p style="margin-bottom: 1.25rem;">Во многих случаях восстановленная микробиота способна <strong style="color: white;">сама справиться с патогенами</strong> — без антибиотиков и без риска резистентности.</p>
+        <p>А когда применение антибиотиков совершенно необходимо, восстановление микробиоты после них идёт <strong style="color: white;">быстрее и успешнее</strong>.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div style="background: rgba(255,255,255,0.07); border: 0.5px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 1.5rem;">
+          <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.6rem;">Ваша собственная микробиота</div>
+          <p style="color: rgba(255,255,255,0.8); font-size: 15px; line-height: 1.6;">Никакой донорской микробиоты и усреднённых пробиотиков. Организм уже знает свои штаммы и принимает их без сопротивления.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.07); border: 0.5px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 1.5rem;">
+          <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.6rem;">Меньше антибиотиков</div>
+          <p style="color: rgba(255,255,255,0.8); font-size: 15px; line-height: 1.6;">Восстановленная микробиота часто сама справляется с патогенами, разрывая порочный круг рецидивов.</p>
+        </div>
+        <div style="background: var(--green-mid); border-radius: 16px; padding: 1.5rem;">
+          <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-deep); margin-bottom: 0.6rem;">Устойчивый результат</div>
+          <p style="color: var(--green-deep); font-size: 15px; line-height: 1.6; font-weight: 500;">Восстановление именно вашего баланса — биологически обоснованный путь к здоровью надолго.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════════ 2 · РЕШЕНИЕ ═══════════════ -->
+<section id="solution" style="background: var(--cream);">
+  <div class="section-inner">
+    <p class="section-eyebrow">Как мы это делаем</p>
+    <h2 class="section-title">Аутологичная трансплантация —<br><em>ваши штаммы возвращаются вам</em></h2>
+    <p class="section-lead">Мы берём ваши собственные лактобациллы, культивируем их до терапевтической концентрации и возвращаем обратно. Без донорской микробиоты, без антибиотиков там, где без них можно обойтись. Всё от начала до конца — в нашей клинике и нашей сертифицированной лаборатории.</p>
+
+    <!-- Как это работает -->
+    <p class="section-eyebrow" style="margin-top: 5rem;">Как это работает</p>
+    <h3 class="section-title" style="font-size: clamp(26px, 3vw, 34px); margin-bottom: 0;">Четыре шага. Один визит для начала.</h3>
     <div class="steps-grid">
       <div class="step">
         <div class="step-num">01</div>
@@ -845,40 +998,75 @@
         <p>По запросу вашего врача из образца изготавливается персонализированный автопробиотик. Ваши штаммы — возвращены вам.</p>
       </div>
     </div>
+
+    <!-- Сценарии применения -->
+    <p class="section-eyebrow" style="margin-top: 5rem;">Сценарии применения</p>
+    <h3 class="section-title" style="font-size: clamp(26px, 3vw, 34px); margin-bottom: 0;">Четыре сценария — одно решение</h3>
+    <div class="services-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 2.5rem;">
+      <div class="service-card highlight" style="border-bottom: 0.5px solid var(--rule);">
+        <span class="service-tag">Лечение</span>
+        <h3>Лечение вагинального дисбиоза без антибиотиков</h3>
+        <p>Мы берём ваши лактобациллы, культивируем их до терапевтической концентрации и трансплантируем обратно. Во многих случаях этого достаточно для восстановления нормальной микробиоты влагалища — без применения антибиотиков и без риска развития резистентности.</p>
+        <div class="service-for">Терапия · БВ, кандидоз, дисбиоз</div>
+      </div>
+      <div class="service-card" style="border-bottom: 0.5px solid var(--rule);">
+        <span class="service-tag">Реабилитация</span>
+        <h3>Восстановление микробиоты после лучевой или химиотерапии</h3>
+        <p>Инвазивная терапия онкологических заболеваний нередко нарушает вагинальную микробиоту. Мы сохраняем жизнеспособные штаммы, культивируем их и возвращаем влагалищу собственные бактерии — это значительно ускоряет реабилитацию. Оптимальное решение: забор образца до начала инвазивного лечения.</p>
+        <div class="service-for">Онкореабилитация · постхимия · постлучевая терапия</div>
+      </div>
+      <div class="service-card">
+        <span class="service-tag">Хранение</span>
+        <h3>Банкирование здоровой микробиоты</h3>
+        <p>Мы храним вашу здоровую микробиоту до тех пор, пока не потребуется персонифицированный пробиотик. Это не обязательно критический случай: персонифицированные пробиотики эффективны и для профилактики, и для поддержания вагинального здоровья в долгосрочной перспективе.</p>
+        <div class="service-for">Профилактика · долгосрочное хранение · биобанк</div>
+      </div>
+      <div class="service-card">
+        <span class="service-tag">Персонализация</span>
+        <h3>Персонифицированные пробиотики при менопаузе, беременности и стрессе</h3>
+        <p>При менопаузе снижение эстрогена меняет состав микробиоты — персонифицированный пробиотик смягчает этот переход. При беременности он безопаснее антибиотиков. После сильного стресса, способного нарушить микробный баланс, помогает быстрому восстановлению.</p>
+        <div class="service-for">Менопауза · беременность · постстрессовое восстановление</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- ABOUT -->
-<section id="about">
+<!-- ═══════════════ 3 · ПОЧЕМУ МЫ ═══════════════ -->
+<section id="why">
   <div class="section-inner">
-    <p class="section-eyebrow">О нас</p>
-    <h2 class="section-title">Наука о микробиоме —<br><em>доступная на практике</em></h2>
+    <p class="section-eyebrow">Почему мы</p>
+    <h2 class="section-title">Только ваша микробиота.<br><em>Всё под одной крышей.</em></h2>
+    <p class="section-lead">Биом Технологии основана командой учёных-микробиологов и клинических гинекологов с одной целью — сделать лечение вагинального дисбиоза без антибиотиков доступным на практике.</p>
 
-    <div class="about-grid">
+    <div class="about-grid" style="margin-top: 4rem;">
       <div class="about-text">
-        <p>Биом Технологии основана командой учёных-микробиологов и клинических гинекологов с одной целью: <strong>сделать лечение вагинального дисбиоза без антибиотиков доступным на практике.</strong></p>
-        <p>Вагинальный дисбиоз связан с рецидивирующим бактериальным вагинозом, кандидозом, осложнениями при беременности и неудачами ЭКО. Традиционное лечение антибиотиками подавляет симптомы, но нередко разрушает флору ещё сильнее. Мы предлагаем альтернативу.</p>
-        <p>Наш подход — аутологичная трансплантация лактобацилл: забор, культивация до терапевтической концентрации и возврат собственных штаммов пациентки. Всё от начала до конца — в нашей клинике, в нашей сертифицированной лаборатории.</p>
-
-        <div class="about-values">
+        <div class="about-values" style="margin-top: 0;">
           <div class="value-row">
             <div class="value-dot"></div>
-            <div class="value-text"><strong>Лечение без антибиотиков</strong> — в случаях дисбиоза и рецидивирующего БВ аутологичная трансплантация лактобацилл позволяет восстановить флору без ущерба для неё.</div>
+            <div class="value-text"><strong>Только ваши штаммы</strong> — никакой донорской микробиоты, никаких усреднённых коммерческих пробиотиков. Организм уже знает эти бактерии и принимает их без сопротивления.</div>
           </div>
           <div class="value-row">
             <div class="value-dot"></div>
-            <div class="value-text"><strong>Профилактика и хранение</strong> — сохранённая здоровая флора становится вашим персональным ресурсом на будущее: после родов, химиотерапии, менопаузы.</div>
+            <div class="value-text"><strong>Полный цикл в одной клинике</strong> — забор, сертифицированная лаборатория, биобанк при −80 °C и изготовление препарата. Вам не нужны наборы, холодовая цепь или сторонние подрядчики.</div>
           </div>
           <div class="value-row">
             <div class="value-dot"></div>
-            <div class="value-text"><strong>Только ваши штаммы</strong> — никакой донорской флоры, никаких усреднённых коммерческих пробиотиков. Организм уже знает эти бактерии.</div>
+            <div class="value-text"><strong>Лечение без антибиотиков</strong> — при дисбиозе и рецидивирующем БВ трансплантация собственных лактобацилл восстанавливает микробиоту без ущерба для неё и без риска резистентности.</div>
+          </div>
+          <div class="value-row">
+            <div class="value-dot"></div>
+            <div class="value-text"><strong>Ресурс на будущее</strong> — сохранённая здоровая микробиота становится вашим персональным резервом: после родов, химиотерапии, в период менопаузы.</div>
           </div>
         </div>
       </div>
 
       <div class="about-stats" style="grid-template-columns:1fr;gap:1rem;">
+        <div class="stat-card" style="display:flex;align-items:center;gap:1.5rem;padding:1.25rem 1.75rem;">
+          <div class="stat-num" style="font-size:36px;flex-shrink:0;min-width:64px;">&lt;1ч</div>
+          <div class="stat-label" style="font-size:14px;">первый визит — от консультации до забора образца</div>
+        </div>
         <div class="stat-card" style="display:flex;align-items:center;gap:1.5rem;padding:1.25rem 1.75rem;">
           <div class="stat-num" style="font-size:36px;flex-shrink:0;min-width:64px;">24ч</div>
           <div class="stat-label" style="font-size:14px;">от первого визита до передачи образца в лабораторию</div>
@@ -887,81 +1075,11 @@
           <div class="stat-num" style="font-size:36px;flex-shrink:0;min-width:64px;">5–7</div>
           <div class="stat-label" style="font-size:14px;">рабочих дней на изготовление персонального препарата</div>
         </div>
-        <div class="stat-card" style="display:flex;align-items:center;gap:1.5rem;padding:1.25rem 1.75rem;">
-          <div class="stat-num" style="font-size:36px;flex-shrink:0;min-width:64px;">&lt;1ч</div>
-          <div class="stat-label" style="font-size:14px;">первый визит — от консультации до забора образца</div>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-inner">
-    <div class="services-header">
-      <div>
-        <p class="section-eyebrow">Наши услуги</p>
-        <h2 class="section-title">Лечение и профилактика —<br><em>вашей собственной флорой</em></h2>
-      </div>
-      <div class="section-lead">Все процедуры проводятся в нашей клинике. Мы используем только ваши собственные лактобациллы — без чужеродных штаммов, без антибиотиков там, где без них можно обойтись.</div>
-    </div>
-
-    <div class="services-grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="service-card highlight" style="border-bottom: 0.5px solid var(--rule);">
-        <span class="service-tag">Лечение</span>
-        <h3>Лечение вагинального дисбиоза без антибиотиков</h3>
-        <p>Мы берём ваши лактобациллы, культивируем их до терапевтической концентрации и трансплантируем обратно. Во многих случаях этого достаточно для восстановления нормальной микрофлоры влагалища — без применения антибиотиков и без риска развития резистентности.</p>
-        <div class="service-for">Терапия · БВ, кандидоз, дисбиоз</div>
-      </div>
-      <div class="service-card" style="border-bottom: 0.5px solid var(--rule);">
-        <span class="service-tag">Реабилитация</span>
-        <h3>Восстановление микрофлоры после лучевой или химиотерапии</h3>
-        <p>Инвазивная терапия онкологических заболеваний нередко нарушает вагинальную микробиоту. Мы сохраняем жизнеспособные штаммы, культивируем их и заселяем влагалище собственной флорой — это значительно ускоряет реабилитацию. Оптимальное решение: забор образца до начала инвазивного лечения.</p>
-        <div class="service-for">Онкореабилитация · постхимия · постлучевая терапия</div>
-      </div>
-      <div class="service-card">
-        <span class="service-tag">Хранение</span>
-        <h3>Банкирование здоровой микрофлоры</h3>
-        <p>Мы храним вашу здоровую микрофлору до тех пор, пока не потребуется персонифицированный пробиотик. Это не обязательно критический случай: персонифицированные пробиотики эффективны и для профилактики, и для поддержания вагинального здоровья в долгосрочной перспективе.</p>
-        <div class="service-for">Профилактика · долгосрочное хранение · биобанк</div>
-      </div>
-      <div class="service-card">
-        <span class="service-tag">Персонализация</span>
-        <h3>Персонифицированные пробиотики при менопаузе, беременности и стрессе</h3>
-        <p>При менопаузе снижение эстрогена меняет состав флоры — персонифицированный пробиотик смягчает этот переход. При беременности он безопаснее антибиотиков. После сильного стресса, способного нарушить микробный баланс, помогает быстрому восстановлению.</p>
-        <div class="service-for">Менопауза · беременность · постстрессовое восстановление</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<hr class="divider">
-
-<!-- PATIENTS COMPARISON -->
-<section id="patients">
-  <div class="section-inner">
-    <p class="section-eyebrow">Пациенткам</p>
-    <h2 class="section-title">Не добавка.<br><em>Восстановление.</em></h2>
-    <p class="section-lead">Антибиотики подавляют симптомы, но нередко ещё больше нарушают флору. Автопробиотик восстанавливает вашу собственную экосистему — ту, что ваш организм уже знает.</p>
-
-    <div class="compare-grid" style="margin-top: 3rem;">
-      <div class="compare-card alt">
-        <div class="cmp-label">Обычный пробиотик</div>
-        <h3>Чужое растение</h3>
-        <p>Стандартизированные штаммы из донорской популяции. Возможно, помогут — но ваш организм никогда с ними не встречался. Результат непредсказуем.</p>
-      </div>
-      <div class="compare-card main">
-        <div class="cmp-label">Автопробиотик Биом</div>
-        <h3>Черенок вашего собственного растения</h3>
-        <p>Ваши штаммы, сохранённые в период здоровья, возвращённые вам. Организм их уже знает — восстановление быстрее и устойчивее.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <hr class="divider">
 
@@ -974,11 +1092,11 @@
     <div class="faq-grid">
       <div class="faq-item">
         <h4>Кому это подходит?</h4>
-        <p>Пациенткам с рецидивирующим бактериальным вагинозом или кандидозом, которых не устраивает постоянное лечение антибиотиками. Женщинам, готовящимся к химио- или лучевой терапии. А также тем, кто хочет сохранить здоровую флору превентивно — перед беременностью, ЭКО или в период менопаузы.</p>
+        <p>Пациенткам с рецидивирующим бактериальным вагинозом или кандидозом, которых не устраивает постоянное лечение антибиотиками. Женщинам, готовящимся к химио- или лучевой терапии. А также тем, кто хочет сохранить здоровую микробиоту превентивно — перед беременностью, ЭКО или в период менопаузы.</p>
       </div>
       <div class="faq-item">
         <h4>Когда лучше всего сдать образец?</h4>
-        <p>Идеальный момент — пока флора здорова и сбалансирована. При онкологическом лечении крайне важно взять образец до начала химио- или лучевой терапии: это существенно упрощает последующую культивацию. Как резервная копия — её делают до сбоя, а не после.</p>
+        <p>Идеальный момент — пока микробиота здорова и сбалансирована. При онкологическом лечении крайне важно взять образец до начала химио- или лучевой терапии: это существенно упрощает последующую культивацию. Как резервная копия — её делают до сбоя, а не после.</p>
       </div>
       <div class="faq-item">
         <h4>Как долго хранится образец?</h4>
@@ -1005,212 +1123,56 @@
   <div class="section-inner" style="text-align: center;">
     <p class="section-eyebrow">Начать</p>
     <h2 class="section-title">Запишитесь на консультацию —<br>мы разберёмся вместе</h2>
-    <p class="section-lead">Не важно, нужно ли вам лечение сейчас или вы хотите сохранить флору превентивно. Наш специалист оценит ситуацию и предложит подходящий вариант.</p>
+    <p class="section-lead">Не важно, нужно ли вам лечение сейчас или вы хотите сохранить микробиоту превентивно. Наш специалист оценит ситуацию и предложит подходящий вариант.</p>
     <div class="cta-buttons">
-      <button type="button" onclick="document.getElementById('booking-modal').style.cssText='display:block;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(5,94,91,0.5);z-index:9999;overflow-y:auto;'" class="btn-white" style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer;font-family:inherit;border:none;">Записаться на приём</button>
-      <button type="button" onclick="document.getElementById('doctors-modal').style.cssText='display:block;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(5,94,91,0.5);z-index:9999;overflow-y:auto;'" class="btn-ghost" style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer;font-family:inherit;">Информация для врачей</button>
+      <button onclick="document.getElementById('booking-modal').style.display='flex'" class="btn-white" style="cursor:pointer;font-family:inherit;border:none;">Записаться на приём</button>
+      <button onclick="document.getElementById('doctors-modal').style.display='flex'" class="btn-ghost" style="cursor:pointer;font-family:inherit;">Информация для врачей</button>
     </div>
   </div>
 </section>
 
 <footer>
-  <div>
-    <div class="footer-logo">Биом<span>.</span></div>
-    <p>© 2025 Биом Технологии. Все права защищены.</p>
-  </div>
+    <div>
+      <svg height="32" viewBox="0 0 220 70" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-bottom:6px;">
+        <g stroke="#7ED8D6" stroke-width="2" fill="none" stroke-linecap="round">
+          <line x1="6" y1="35" x2="38" y2="35"/>
+          <line x1="14" y1="35" x2="14" y2="18"/>
+          <line x1="14" y1="18" x2="24" y2="18"/>
+          <line x1="24" y1="35" x2="24" y2="50"/>
+          <line x1="24" y1="50" x2="34" y2="50"/>
+          <line x1="20" y1="35" x2="20" y2="26"/>
+          <line x1="20" y1="26" x2="30" y2="26"/>
+          <circle cx="14" cy="18" r="2.5" fill="#7ED8D6"/>
+          <circle cx="24" cy="50" r="2.5" fill="#7ED8D6"/>
+          <circle cx="30" cy="26" r="2.5" fill="#3DCFCC"/>
+          <circle cx="34" cy="50" r="2" fill="#3DCFCC"/>
+          <circle cx="38" cy="35" r="2" fill="#7ED8D6"/>
+          <circle cx="24" cy="18" r="2" fill="#3DCFCC"/>
+        </g>
+        <text x="44" y="46" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="32" letter-spacing="1" fill="white">БИОМ</text>
+        <text x="44" y="62" font-family="Arial, sans-serif" font-weight="400" font-size="11.5" letter-spacing="3.5" fill="#7ED8D6">ТЕХНОЛОГИИ</text>
+      </svg>
+      <p>© 2025 Биом Технологии. Все права защищены.</p>
+    </div>
   <div class="footer-links">
-    <a href="#how">Как это работает</a>
-    <a href="#about">О нас</a>
-    <a href="#services">Услуги</a>
-    <a href="#" onclick="event.preventDefault();document.getElementById('doctors-modal').style.cssText='display:block;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(5,94,91,0.5);z-index:9999;overflow-y:auto;'">Врачам</a>
+    <a href="#problem">Проблема</a>
+    <a href="#solution">Решение</a>
+    <a href="#why">Почему мы</a>
+    <a href="#" onclick="event.preventDefault();document.getElementById('doctors-modal').style.display='flex'">Врачам</a>
     <a href="#faq">FAQ</a>
   </div>
 </footer>
 
-<!-- LIFECYCLE MODAL -->
-<div id="lifecycle-modal" style="display:none;">
-  <div style="background:white;border-radius:20px;max-width:620px;width:calc(100% - 1.5rem);margin:2rem auto;position:relative;">
-    <div style="position:sticky;top:0;background:white;border-radius:20px 20px 0 0;padding:1.25rem 1.25rem 0.75rem;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:0.5px solid rgba(26,26,24,0.08);z-index:10;">
-      <div>
-        <p style="font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#0ABAB5;margin-bottom:2px;">Ваша флора — на всю жизнь</p>
-        <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#1A1A18;line-height:1.2;">Здоровая микробиота важна на каждом этапе</h2>
-      </div>
-      <button type="button" onclick="document.getElementById('lifecycle-modal').style.display='none'" style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;background:#F1EFE8;border:none;cursor:pointer;font-size:16px;color:#6B6A66;line-height:1;padding:6px 10px;border-radius:100px;flex-shrink:0;margin-left:1rem;margin-top:2px;">✕</button>
-    </div>
-
-    <div style="padding:0.75rem 1.25rem 0;">
-      <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;" id="m-nav">
-        <button style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;" type="button" class="m-btn m-active" onclick="mGoTo(0)">20-е годы</button>
-        <button style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;" type="button" class="m-btn" onclick="mGoTo(1)">30–40-е годы</button>
-        <button style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;" type="button" class="m-btn" onclick="mGoTo(2)">50+ лет</button>
-      </div>
-    </div>
-
-    <style>
-      .m-btn{padding:6px 14px;border-radius:100px;border:0.5px solid #B4B2A9;background:transparent;color:#6B6A66;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;}
-      .m-active{background:#0ABAB5;border-color:#0ABAB5;color:white;}
-      .m-stage{display:none;padding:1rem 1.25rem 0.5rem;animation:mfade 0.35s ease;}
-      .m-stage.m-vis{display:block;}
-      @keyframes mfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-      .m-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#055E5B;background:#E0F7F6;border-radius:100px;padding:4px 11px;border:0.5px solid #7ED8D6;margin:3px;}
-      .m-bdot{width:5px;height:5px;border-radius:50%;background:#0ABAB5;flex-shrink:0;}
-      .m-bar-track{height:5px;background:#F1EFE8;border-radius:3px;overflow:hidden;border:0.5px solid #D3D1C7;margin-top:4px;}
-      .m-bar-fill{height:100%;border-radius:3px;background:#0ABAB5;transition:width 0.8s ease;}
-      .m-row{display:flex;gap:1rem;align-items:flex-start;margin-bottom:0.75rem;}
-      @media(max-width:480px){.m-row{flex-direction:column;align-items:center;text-align:center;} .m-row .m-info{text-align:left;}}
-    </style>
-
-    <!-- Stage 0 -->
-    <div class="m-stage m-vis" id="ms0">
-      <div class="m-row">
-        <svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-          <!-- Cycle ring -->
-          <circle cx="45" cy="45" r="36" fill="none" stroke="#E0F7F6" stroke-width="8"/>
-          <circle cx="45" cy="45" r="36" fill="none" stroke="#0ABAB5" stroke-width="2" stroke-dasharray="226" stroke-dashoffset="57" stroke-linecap="round"/>
-          <!-- Month dots -->
-          <circle cx="45" cy="9" r="4" fill="#0ABAB5"/>
-          <circle cx="74" cy="19" r="3" fill="#7ED8D6"/>
-          <circle cx="81" cy="45" r="3" fill="#7ED8D6"/>
-          <circle cx="74" cy="71" r="3" fill="#7ED8D6"/>
-          <circle cx="45" cy="81" r="4" fill="#7ED8D6"/>
-          <circle cx="16" cy="71" r="3" fill="#7ED8D6"/>
-          <circle cx="9" cy="45" r="3" fill="#7ED8D6"/>
-          <circle cx="16" cy="19" r="3" fill="#7ED8D6"/>
-          <!-- Flora dots animated -->
-          <circle cx="45" cy="45" r="3.5" fill="#0ABAB5" opacity="0"><animate attributeName="opacity" values="0;0.9;0" dur="2.5s" repeatCount="indefinite" begin="0s"/></circle>
-          <circle cx="38" cy="38" r="2.5" fill="#3DCFCC" opacity="0"><animate attributeName="opacity" values="0;0.7;0" dur="2.5s" repeatCount="indefinite" begin="0.4s"/></circle>
-          <circle cx="53" cy="40" r="2" fill="#0ABAB5" opacity="0"><animate attributeName="opacity" values="0;0.8;0" dur="2.5s" repeatCount="indefinite" begin="0.8s"/></circle>
-          <circle cx="42" cy="53" r="2.5" fill="#3DCFCC" opacity="0"><animate attributeName="opacity" values="0;0.7;0" dur="2.5s" repeatCount="indefinite" begin="1.2s"/></circle>
-          <circle cx="51" cy="51" r="2" fill="#0ABAB5" opacity="0"><animate attributeName="opacity" values="0;0.8;0" dur="2.5s" repeatCount="indefinite" begin="1.6s"/></circle>
-        </svg>
-        <div class="m-info" style="flex:1;">
-          <div style="font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#0ABAB5;margin-bottom:2px;">20-е годы</div>
-          <div style="font-family:'Playfair Display',serif;font-size:18px;color:#1A1A18;margin-bottom:0.5rem;">Молодая женщина</div>
-          <div style="font-size:12px;color:#6B6A66;margin-bottom:2px;display:flex;justify-content:space-between;"><span>Здоровье флоры</span><span style="color:#0ABAB5;font-weight:500">Отличное</span></div>
-          <div class="m-bar-track"><div class="m-bar-fill" style="width:88%"></div></div>
-          <p style="font-size:13px;color:#6B6A66;line-height:1.55;margin-top:0.6rem;">Здоровая лактобациллярная флора снижает болезненность менструаций, поддерживает кислую pH-среду и защищает от воспалений.</p>
-        </div>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.5rem;">
-        <span class="m-badge"><span class="m-bdot"></span>Снижает боль при менструациях</span>
-        <span class="m-badge"><span class="m-bdot"></span>Защита от воспалений</span>
-        <span class="m-badge"><span class="m-bdot"></span>Профилактика БВ и кандидоза</span>
-        <span class="m-badge"><span class="m-bdot"></span>Поддерживает кислую среду</span>
-      </div>
-    </div>
-
-    <!-- Stage 1 -->
-    <div class="m-stage" id="ms1">
-      <div class="m-row">
-        <svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-          <!-- Outer protective ring -->
-          <circle cx="45" cy="45" r="38" fill="none" stroke="#E0F7F6" stroke-width="1.5" stroke-dasharray="4,4"/>
-          <!-- Inner cell -->
-          <ellipse cx="45" cy="47" rx="22" ry="26" fill="#E0F7F6" stroke="#7ED8D6" stroke-width="1.5"/>
-          <!-- Nucleus -->
-          <ellipse cx="45" cy="45" rx="10" ry="12" fill="#7ED8D6" stroke="#0ABAB5" stroke-width="1"/>
-          <!-- DNA strand hint -->
-          <path d="M41 40 Q45 45 41 50" stroke="#0ABAB5" stroke-width="1" fill="none" stroke-linecap="round"/>
-          <path d="M49 40 Q45 45 49 50" stroke="#0ABAB5" stroke-width="1" fill="none" stroke-linecap="round"/>
-          <!-- Floating protective dots -->
-          <circle cx="22" cy="30" r="3" fill="#0ABAB5" opacity="0"><animate attributeName="opacity" values="0;0.7;0" dur="3s" repeatCount="indefinite" begin="0s"/><animate attributeName="r" values="2;3.5;2" dur="3s" repeatCount="indefinite" begin="0s"/></circle>
-          <circle cx="68" cy="32" r="2.5" fill="#0ABAB5" opacity="0"><animate attributeName="opacity" values="0;0.7;0" dur="3s" repeatCount="indefinite" begin="0.6s"/></circle>
-          <circle cx="70" cy="60" r="3" fill="#3DCFCC" opacity="0"><animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite" begin="1.1s"/></circle>
-          <circle cx="20" cy="58" r="2.5" fill="#3DCFCC" opacity="0"><animate attributeName="opacity" values="0;0.7;0" dur="3s" repeatCount="indefinite" begin="1.7s"/></circle>
-          <circle cx="45" cy="18" r="2" fill="#0ABAB5" opacity="0"><animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite" begin="0.9s"/></circle>
-          <circle cx="45" cy="74" r="2" fill="#3DCFCC" opacity="0"><animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite" begin="1.4s"/></circle>
-        </svg>
-        <div class="m-info" style="flex:1;">
-          <div style="font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#0ABAB5;margin-bottom:2px;">30–40-е годы</div>
-          <div style="font-family:'Playfair Display',serif;font-size:18px;color:#1A1A18;margin-bottom:0.5rem;">Зрелая женщина</div>
-          <div style="font-size:12px;color:#6B6A66;margin-bottom:2px;display:flex;justify-content:space-between;"><span>Здоровье флоры</span><span style="color:#0ABAB5;font-weight:500">Высокое</span></div>
-          <div class="m-bar-track"><div class="m-bar-fill" style="width:80%"></div></div>
-          <p style="font-size:13px;color:#6B6A66;line-height:1.55;margin-top:0.6rem;">Флора снижает риск осложнений при беременности, повышает шансы ЭКО и защищает без антибиотиков. После родов — быстрое восстановление.</p>
-        </div>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.5rem;">
-        <span class="m-badge"><span class="m-bdot"></span>Снижает риски при беременности</span>
-        <span class="m-badge"><span class="m-bdot"></span>Повышает шансы при ЭКО</span>
-        <span class="m-badge"><span class="m-bdot"></span>Профилактика преждевременных родов</span>
-        <span class="m-badge"><span class="m-bdot"></span>Защита без антибиотиков</span>
-        <span class="m-badge"><span class="m-bdot"></span>Восстановление после родов</span>
-      </div>
-    </div>
-
-    <!-- Stage 2 -->
-    <div class="m-stage" id="ms2">
-      <div class="m-row">
-        <svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-          <!-- Balance wave: low estrogen, restoring flora -->
-          <path d="M10 55 Q22 30 35 45 Q48 60 60 38 Q72 18 80 35" stroke="#E0F7F6" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path d="M10 55 Q22 30 35 45 Q48 60 60 38 Q72 18 80 35" stroke="#0ABAB5" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <!-- Restoring colony clusters -->
-          <circle cx="35" cy="45" r="12" fill="#E0F7F6" stroke="#7ED8D6" stroke-width="1"/>
-          <circle cx="60" cy="38" r="9" fill="#E0F7F6" stroke="#7ED8D6" stroke-width="1"/>
-          <!-- Flora dots in clusters - stage 2 slower pulse -->
-          <circle cx="32" cy="42" r="2.5" fill="#0ABAB5" opacity="0"><animate attributeName="opacity" values="0;0.6;0" dur="3.5s" repeatCount="indefinite" begin="0s"/></circle>
-          <circle cx="38" cy="46" r="2" fill="#3DCFCC" opacity="0"><animate attributeName="opacity" values="0;0.5;0" dur="3.5s" repeatCount="indefinite" begin="0.7s"/></circle>
-          <circle cx="34" cy="50" r="1.5" fill="#0ABAB5" opacity="0"><animate attributeName="opacity" values="0;0.6;0" dur="3.5s" repeatCount="indefinite" begin="1.4s"/></circle>
-          <circle cx="58" cy="35" r="2" fill="#0ABAB5" opacity="0"><animate attributeName="opacity" values="0;0.5;0" dur="3.5s" repeatCount="indefinite" begin="0.4s"/></circle>
-          <circle cx="63" cy="40" r="2" fill="#3DCFCC" opacity="0"><animate attributeName="opacity" values="0;0.6;0" dur="3.5s" repeatCount="indefinite" begin="1.1s"/></circle>
-          <!-- New growth sprout -->
-          <circle cx="14" cy="65" r="3.5" fill="#7ED8D6" stroke="#0ABAB5" stroke-width="0.8" opacity="0"><animate attributeName="opacity" values="0;0.8;0.8;0" dur="4s" repeatCount="indefinite" begin="0.5s"/></circle>
-          <circle cx="76" cy="22" r="3" fill="#7ED8D6" stroke="#0ABAB5" stroke-width="0.8" opacity="0"><animate attributeName="opacity" values="0;0.7;0.7;0" dur="4s" repeatCount="indefinite" begin="1.5s"/></circle>
-        </svg>
-        <div class="m-info" style="flex:1;">
-          <div style="font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#0ABAB5;margin-bottom:2px;">50+ лет</div>
-          <div style="font-family:'Playfair Display',serif;font-size:18px;color:#1A1A18;margin-bottom:0.5rem;">Мудрая женщина</div>
-          <div style="font-size:12px;color:#6B6A66;margin-bottom:2px;display:flex;justify-content:space-between;"><span>Здоровье флоры</span><span style="color:#0ABAB5;font-weight:500">Поддерживается</span></div>
-          <div class="m-bar-track"><div class="m-bar-fill" style="width:72%"></div></div>
-          <p style="font-size:13px;color:#6B6A66;line-height:1.55;margin-top:0.6rem;">Снижение эстрогена меняет флору. Персонифицированный пробиотик смягчает сухость, дискомфорт и риск атрофического вагинита.</p>
-        </div>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.5rem;">
-        <span class="m-badge"><span class="m-bdot"></span>Смягчает симптомы менопаузы</span>
-        <span class="m-badge"><span class="m-bdot"></span>Снижает сухость и дискомфорт</span>
-        <span class="m-badge"><span class="m-bdot"></span>Защита от атрофического вагинита</span>
-        <span class="m-badge"><span class="m-bdot"></span>Снижает риск ИМП</span>
-      </div>
-    </div>
-
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1.25rem 1.25rem;border-top:0.5px solid rgba(26,26,24,0.08);margin-top:0.25rem;">
-      <div style="display:flex;gap:6px;align-items:center;">
-        <div style="width:7px;height:7px;border-radius:50%;background:#0ABAB5;cursor:pointer;transition:transform 0.2s;transform:scale(1.3);" id="md0" onclick="mGoTo(0)"></div>
-        <div style="width:7px;height:7px;border-radius:50%;background:#D3D1C7;cursor:pointer;" id="md1" onclick="mGoTo(1)"></div>
-        <div style="width:7px;height:7px;border-radius:50%;background:#D3D1C7;cursor:pointer;" id="md2" onclick="mGoTo(2)"></div>
-      </div>
-      <button type="button" onclick="mNext()" style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;background:#0ABAB5;color:white;border:none;border-radius:100px;padding:10px 22px;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Следующий этап →</button>
-    </div>
-  </div>
-</div>
-
-<script>
-var mCur = 0;
-function mGoTo(n) {
-  document.getElementById('ms'+mCur).classList.remove('m-vis');
-  document.querySelectorAll('.m-btn')[mCur].classList.remove('m-active');
-  document.getElementById('md'+mCur).style.background='#D3D1C7';
-  document.getElementById('md'+mCur).style.transform='';
-  mCur = n;
-  document.getElementById('ms'+mCur).classList.add('m-vis');
-  document.querySelectorAll('.m-btn')[mCur].classList.add('m-active');
-  document.getElementById('md'+mCur).style.background='#0ABAB5';
-  document.getElementById('md'+mCur).style.transform='scale(1.3)';
-}
-function mNext() { mGoTo((mCur+1)%3); }
-</script>
-
-
 <!-- DOCTORS MODAL -->
-<div id="doctors-modal" style="display:none;">
-  <div style="background:white;border-radius:20px;max-width:780px;width:calc(100% - 1.5rem);margin:2rem auto;position:relative;">
+<div id="doctors-modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(5,94,91,0.5);align-items:center;justify-content:center;padding:0.75rem;">
+  <div style="background:white;border-radius:20px;max-width:780px;width:100%;max-height:90vh;overflow-y:auto;">
 
     <div style="position:sticky;top:0;background:white;border-radius:20px 20px 0 0;padding:1.25rem 1.5rem 1rem;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:0.5px solid rgba(26,26,24,0.08);z-index:10;">
       <div>
         <p style="font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#0ABAB5;margin-bottom:3px;">Врачам</p>
         <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#1A1A18;line-height:1.2;">Направьте пациентку —<br><em style="font-style:italic;color:#0ABAB5;">мы возьмём на себя остальное</em></h2>
       </div>
-      <button type="button" onclick="document.getElementById('doctors-modal').style.display='none'" style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;background:#F1EFE8;border:none;cursor:pointer;font-size:16px;color:#6B6A66;line-height:1;padding:6px 10px;border-radius:100px;flex-shrink:0;margin-left:1rem;margin-top:2px;">✕</button>
+      <button onclick="document.getElementById('doctors-modal').style.display='none'" style="background:#F1EFE8;border:none;cursor:pointer;font-size:16px;color:#6B6A66;line-height:1;padding:6px 10px;border-radius:100px;flex-shrink:0;margin-left:1rem;margin-top:2px;">✕</button>
     </div>
 
     <div style="padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
@@ -1259,7 +1221,7 @@ function mNext() { mGoTo((mCur+1)%3); }
           <p style="font-size:13px;color:#6B6A66;line-height:1.55;">Опциональный анонимный обмен данными для поддержки клинического наблюдения и участия в исследованиях.</p>
         </div>
         <div style="margin-top:0.5rem;text-align:center;">
-          <button type="button" onclick="document.getElementById('doctors-modal').style.display='none';document.getElementById('booking-modal').style.cssText='display:block;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(5,94,91,0.5);z-index:9999;overflow-y:auto;'" style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;display:inline-block;background:#0ABAB5;color:white;padding:12px 28px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;border:none;">Связаться с нами</button>
+          <button onclick="document.getElementById('doctors-modal').style.display='none';document.getElementById('booking-modal').style.display='flex'" style="display:inline-block;background:#0ABAB5;color:white;padding:12px 28px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;border:none;">Связаться с нами</button>
         </div>
       </div>
 
@@ -1267,59 +1229,63 @@ function mNext() { mGoTo((mCur+1)%3); }
   </div>
 </div>
 
-
+<script>
+document.getElementById('doctors-modal').addEventListener('click', function(e){
+  if(e.target===this) this.style.display='none';
+});
+</script>
 
 
 <!-- BOOKING MODAL -->
-<div id="booking-modal" style="display:none;">
-  <div style="background:white;border-radius:20px;max-width:480px;width:calc(100% - 1.5rem);margin:2rem auto;position:relative;">
+<div id="booking-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(5,94,91,0.5);align-items:center;justify-content:center;padding:0.75rem;">
+  <div style="background:white;border-radius:20px;max-width:480px;width:100%;max-height:92vh;overflow-y:auto;">
 
     <div style="position:sticky;top:0;background:white;border-radius:20px 20px 0 0;padding:1.25rem 1.5rem 1rem;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:0.5px solid rgba(26,26,24,0.08);z-index:10;">
       <div>
         <p style="font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#0ABAB5;margin-bottom:3px;">Биом Технологии</p>
         <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#1A1A18;line-height:1.2;">Запись на приём</h2>
       </div>
-      <button type="button" onclick="document.getElementById('booking-modal').style.display='none'" style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;background:#F1EFE8;border:none;cursor:pointer;font-size:16px;color:#6B6A66;line-height:1;padding:6px 10px;border-radius:100px;flex-shrink:0;margin-left:1rem;margin-top:2px;">✕</button>
+      <button onclick="document.getElementById('booking-modal').style.display='none'" style="background:#F1EFE8;border:none;cursor:pointer;font-size:16px;color:#6B6A66;line-height:1;padding:6px 10px;border-radius:100px;flex-shrink:0;margin-left:1rem;margin-top:2px;">✕</button>
     </div>
 
     <div id="booking-form-wrap" style="padding:1.5rem;">
-      <div id="booking-success" style="display:none;padding:2rem;text-align:center;">
+      <div data-fs-success style="display:none;padding:2rem;text-align:center;">
         <div style="width:56px;height:56px;border-radius:50%;background:#E0F7F6;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0ABAB5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#1A1A18;margin-bottom:0.75rem;">Заявка отправлена</h3>
         <p style="font-size:15px;color:#6B6A66;line-height:1.65;margin-bottom:2rem;">Мы получили вашу заявку и свяжемся с вами в течение одного рабочего дня.</p>
-        <button type="button" onclick="document.getElementById('booking-modal').style.display='none'" style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;background:#0ABAB5;color:white;border:none;border-radius:100px;padding:12px 32px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;">Закрыть</button>
+        <button onclick="document.getElementById('booking-modal').style.display='none'" style="background:#0ABAB5;color:white;border:none;border-radius:100px;padding:12px 32px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;">Закрыть</button>
       </div>
 
-      <div id="booking-error" style="display:none;margin:0 0 1rem;padding:10px 14px;background:#fff0f0;border-radius:10px;font-size:13px;color:#c0392b;">Произошла ошибка. Пожалуйста, попробуйте ещё раз.</div>
+      <div data-fs-error style="display:none;margin:0 0 1rem;padding:10px 14px;background:#fff0f0;border-radius:10px;font-size:13px;color:#c0392b;"></div>
 
-      <form id="booking-form">
+      <form id="booking-form" data-fs-field>
         <div style="margin-bottom:1.25rem;">
           <label style="display:block;font-size:13px;font-weight:500;color:#3C3B38;margin-bottom:6px;">Имя *</label>
-          <input type="text" name="name" required placeholder="Ваше имя" style="width:100%;padding:11px 14px;border:0.5px solid #B4B2A9;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#1A1A18;outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='#0ABAB5'" onblur="this.style.borderColor='#B4B2A9'"/>
-          <span style="font-size:12px;color:#c0392b;display:block;margin-top:4px;"></span>
+          <input type="text" name="name" required placeholder="Ваше имя" data-fs-field style="width:100%;padding:11px 14px;border:0.5px solid #B4B2A9;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#1A1A18;outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='#0ABAB5'" onblur="this.style.borderColor='#B4B2A9'"/>
+          <span data-fs-error="name" style="font-size:12px;color:#c0392b;display:block;margin-top:4px;"></span>
         </div>
 
         <div style="margin-bottom:1.25rem;">
           <label style="display:block;font-size:13px;font-weight:500;color:#3C3B38;margin-bottom:6px;">Телефон *</label>
-          <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" style="width:100%;padding:11px 14px;border:0.5px solid #B4B2A9;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#1A1A18;outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='#0ABAB5'" onblur="this.style.borderColor='#B4B2A9'"/>
-          <span style="font-size:12px;color:#c0392b;display:block;margin-top:4px;"></span>
+          <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" data-fs-field style="width:100%;padding:11px 14px;border:0.5px solid #B4B2A9;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#1A1A18;outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='#0ABAB5'" onblur="this.style.borderColor='#B4B2A9'"/>
+          <span data-fs-error="phone" style="font-size:12px;color:#c0392b;display:block;margin-top:4px;"></span>
         </div>
 
         <div style="margin-bottom:1.25rem;">
           <label style="display:block;font-size:13px;font-weight:500;color:#3C3B38;margin-bottom:6px;">Email</label>
-          <input type="email" name="email" placeholder="your@email.com" style="width:100%;padding:11px 14px;border:0.5px solid #B4B2A9;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#1A1A18;outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='#0ABAB5'" onblur="this.style.borderColor='#B4B2A9'"/>
-          <span style="font-size:12px;color:#c0392b;display:block;margin-top:4px;"></span>
+          <input type="email" name="email" placeholder="your@email.com" data-fs-field style="width:100%;padding:11px 14px;border:0.5px solid #B4B2A9;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#1A1A18;outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='#0ABAB5'" onblur="this.style.borderColor='#B4B2A9'"/>
+          <span data-fs-error="email" style="font-size:12px;color:#c0392b;display:block;margin-top:4px;"></span>
         </div>
 
         <div style="margin-bottom:1.25rem;">
           <label style="display:block;font-size:13px;font-weight:500;color:#3C3B38;margin-bottom:6px;">Интересующая услуга</label>
-          <select name="service" style="width:100%;padding:11px 14px;border:0.5px solid #B4B2A9;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#1A1A18;outline:none;background:white;appearance:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='#0ABAB5'" onblur="this.style.borderColor='#B4B2A9'">
+          <select name="service" data-fs-field style="width:100%;padding:11px 14px;border:0.5px solid #B4B2A9;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#1A1A18;outline:none;background:white;appearance:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='#0ABAB5'" onblur="this.style.borderColor='#B4B2A9'">
             <option value="">— Выберите —</option>
             <option>Лечение вагинального дисбиоза</option>
             <option>Восстановление после химио- или лучевой терапии</option>
-            <option>Банкирование здоровой микрофлоры</option>
+            <option>Банкирование здоровой микробиоты</option>
             <option>Персонифицированные пробиотики</option>
             <option>Первичная консультация</option>
           </select>
@@ -1327,10 +1293,10 @@ function mNext() { mGoTo((mCur+1)%3); }
 
         <div style="margin-bottom:1.75rem;">
           <label style="display:block;font-size:13px;font-weight:500;color:#3C3B38;margin-bottom:6px;">Комментарий</label>
-          <textarea name="message" rows="3" placeholder="Удобное время, вопросы, пожелания..." style="width:100%;padding:11px 14px;border:0.5px solid #B4B2A9;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#1A1A18;outline:none;resize:vertical;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='#0ABAB5'" onblur="this.style.borderColor='#B4B2A9'"></textarea>
+          <textarea name="message" rows="3" placeholder="Удобное время, вопросы, пожелания..." data-fs-field style="width:100%;padding:11px 14px;border:0.5px solid #B4B2A9;border-radius:10px;font-size:15px;font-family:'Inter',sans-serif;color:#1A1A18;outline:none;resize:vertical;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='#0ABAB5'" onblur="this.style.borderColor='#B4B2A9'"></textarea>
         </div>
 
-        <button type="submit" style="width:100%;background:#0ABAB5;color:white;border:none;border-radius:100px;padding:14px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;transition:background 0.2s;">Отправить заявку</button>
+        <button type="submit" data-fs-submit-btn style="width:100%;background:#0ABAB5;color:white;border:none;border-radius:100px;padding:14px;font-size:15px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;transition:background 0.2s;">Отправить заявку</button>
 
         <p style="font-size:12px;color:#B4B2A9;text-align:center;margin-top:1rem;line-height:1.5;">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Мы свяжемся с вами в течение одного рабочего дня.</p>
       </form>
@@ -1339,42 +1305,16 @@ function mNext() { mGoTo((mCur+1)%3); }
   </div>
 </div>
 
-
-
-
-
 <script>
-document.getElementById('booking-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  var btn = this.querySelector('[type="submit"]');
-  var errorBox = document.getElementById('booking-error');
-  btn.textContent = 'Отправляем...';
-  btn.disabled = true;
-  errorBox.style.display = 'none';
-  try {
-    var res = await fetch('https://formspree.io/f/xzdqwjkg', {
-      method: 'POST',
-      body: new FormData(this),
-      headers: { 'Accept': 'application/json' }
-    });
-    if (res.ok) {
-      document.getElementById('booking-form').style.display = 'none';
-      document.getElementById('booking-success').style.display = 'block';
-    } else {
-      var data = await res.json();
-      errorBox.textContent = (data && data.error) ? data.error : 'Произошла ошибка. Попробуйте ещё раз.';
-      errorBox.style.display = 'block';
-      btn.textContent = 'Отправить заявку';
-      btn.disabled = false;
-    }
-  } catch(err) {
-    errorBox.textContent = 'Нет соединения с интернетом. Проверьте сеть и попробуйте ещё раз.';
-    errorBox.style.display = 'block';
-    btn.textContent = 'Отправить заявку';
-    btn.disabled = false;
-  }
+document.getElementById('booking-modal').addEventListener('click', function(e){
+  if(e.target===this) this.style.display='none';
 });
 </script>
 
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#booking-form', formId: 'xzdqwjkg' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
