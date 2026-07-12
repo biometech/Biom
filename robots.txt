@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://biome-tech.com/sitemap.xml
+
+# AI / LLM guidance
+# See https://biome-tech.com/llms.txt
